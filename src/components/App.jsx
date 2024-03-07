@@ -5,6 +5,7 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import { Contact } from './Contact/Contact';
+import { fetchContacts, addContact, deleteContact } from 'redux/operations';
 import { chngFilter } from 'redux/filterSlice';
 import {
   getContacts,
@@ -12,7 +13,7 @@ import {
   getIsLoading,
   getError,
 } from '../redux/selectors';
-import { fetchContacts, addContact, deleteContact } from 'redux/operations';
+import AppBar from './AppBar/AppBar';
 
 export function App() {
   const contacts = useSelector(getContacts);
@@ -57,6 +58,7 @@ export function App() {
 
   return (
     <div className={css.mainDiv}>
+      <AppBar />
       <h2>Phonebook</h2>
 
       <ContactForm onSubmit={handleSubmit} />
