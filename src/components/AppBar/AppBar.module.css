@@ -5,7 +5,7 @@
   box-shadow: 0 3px 8px 1px rgb(199, 199, 199);
 }
 
-.nav {
+/* .nav {
   display: flex;
   padding: 0;
   margin: 0;
@@ -27,4 +27,4 @@
 
 .navList:not(:last-child) {
   margin-right: 30px;
-}
+} */

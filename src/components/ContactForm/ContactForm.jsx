@@ -1,9 +1,33 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import css from './ContactForm.module.css';
+import {
+  getContacts,
+  // getFilter,
+  // getIsLoading,
+  // getError,
+} from '../../redux/selectors';
 
-export function ContactForm({ onSubmit }) {
+export function ContactForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const contacts = useSelector(getContacts);
+
+  const dispatch = useDispatch();
+
+  const onSubmit = contact => {
+    if (isSaved(contact)) {
+      return alert(`${contact.name} is already is contacts `);
+    }
+    dispatch(addContact(contact));
+  };
+
+  const isSaved = user => {
+    const normalaseUser = user.name.toLowerCase();
+    return contacts.find(
+      contact => contact.name.toLowerCase() === normalaseUser
+    );
+  };
 
   const getName = evt => {
     setName(evt.target.value);

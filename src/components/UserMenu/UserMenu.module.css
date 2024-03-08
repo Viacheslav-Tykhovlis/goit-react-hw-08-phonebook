@@ -1,0 +1,11 @@
+.userMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userEmail {
+  margin: 0;
+  margin-bottom: 5px;
+}

@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
 import css from './App.module.css';
-import { ContactForm } from './ContactForm/ContactForm';
+// import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import { Contact } from './Contact/Contact';
@@ -14,6 +15,9 @@ import {
   getError,
 } from '../redux/selectors';
 import AppBar from './AppBar/AppBar';
+import Register from 'pages/Register/Register';
+import Login from 'pages/Login/Login';
+import AddContact from 'pages/AddContact/AddContact';
 
 export function App() {
   const contacts = useSelector(getContacts);
@@ -59,9 +63,17 @@ export function App() {
   return (
     <div className={css.mainDiv}>
       <AppBar />
-      <h2>Phonebook</h2>
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/addcontact"
+          element={<AddContact onSubmit={handleSubmit} />}
+        />
+      </Routes>
+      {/* <h2>Phonebook</h2> */}
 
-      <ContactForm onSubmit={handleSubmit} />
+      {/* <ContactForm onSubmit={handleSubmit} /> */}
 
       <h2>Contacts</h2>
 
