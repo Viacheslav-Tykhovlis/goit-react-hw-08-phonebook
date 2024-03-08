@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import css from './UserLogined.module.css';
+import { UserMenu } from 'components/UserMenu/UserMenu';
 
 const StyledLink = styled(NavLink)`
   &.active {
@@ -17,6 +18,7 @@ export const UserLogined = () => {
       <StyledLink to="/contacts" className={css.navList}>
         Contacts
       </StyledLink>
+      <UserMenu />
     </nav>
   );
 };
