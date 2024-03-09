@@ -1,12 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './ContactForm.module.css';
-import {
-  getContacts,
-  // getFilter,
-  // getIsLoading,
-  // getError,
-} from '../../redux/selectors';
+import { addContact } from 'redux/operations';
+import { getContacts } from '../../redux/selectors';
 
 export function ContactForm() {
   const [name, setName] = useState('');
@@ -15,15 +11,19 @@ export function ContactForm() {
 
   const dispatch = useDispatch();
 
-  const onSubmit = contact => {
-    if (isSaved(contact)) {
-      return alert(`${contact.name} is already is contacts `);
+  const onSubmit = evt => {
+    evt.preventDefault();
+    const name = evt.target.name.value;
+    const phone = evt.target.phone.value;
+    if (isSaved(name)) {
+      return alert(`${name} is already is contacts `);
     }
-    dispatch(addContact(contact));
+    dispatch(addContact({ name, phone }));
+    reset();
   };
 
   const isSaved = user => {
-    const normalaseUser = user.name.toLowerCase();
+    const normalaseUser = user.toLowerCase();
     return contacts.find(
       contact => contact.name.toLowerCase() === normalaseUser
     );
@@ -37,22 +37,13 @@ export function ContactForm() {
     setPhone(evt.target.value);
   };
 
-  const addContact = evt => {
-    evt.preventDefault();
-    onSubmit({
-      name,
-      phone,
-    });
-    reset();
-  };
-
   const reset = () => {
     setName('');
     setPhone('');
   };
 
   return (
-    <form className={css.formInput} onSubmit={addContact}>
+    <form className={css.formInput} onSubmit={onSubmit}>
       <label className={css.labelName}>
         Name:
         <br />
@@ -61,6 +52,7 @@ export function ContactForm() {
           value={name}
           type="text"
           name="name"
+          placeholder="Input name your contact"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={getName}
@@ -73,7 +65,8 @@ export function ContactForm() {
           className={css.inputName}
           value={phone}
           type="tel"
-          name="number"
+          name="phone"
+          placeholder="Input phone your contact"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={getNumber}
