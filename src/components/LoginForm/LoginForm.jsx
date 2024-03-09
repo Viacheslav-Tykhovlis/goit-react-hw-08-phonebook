@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import css from './LoginForm.module.css';
+import { logIn } from 'redux/operationsAuth';
 
-export function LoginForm({ onSubmit }) {
+export function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,7 +16,7 @@ export function LoginForm({ onSubmit }) {
 
   const sendUser = evt => {
     evt.preventDefault();
-    onSubmit({
+    logIn({
       email,
       password,
     });
