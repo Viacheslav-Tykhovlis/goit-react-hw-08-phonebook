@@ -1,13 +1,17 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import css from './LoginForm.module.css';
 import { logIn } from 'redux/operationsAuth';
+import { selectIsLoggedIn } from 'redux/selectors';
 
 export function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const dispatch = useDispatch();
+
   const getEmail = evt => {
     setEmail(evt.target.value);
   };
@@ -31,6 +35,10 @@ export function LoginForm() {
     setEmail('');
     setPassword('');
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/contacts" replace />;
+  }
 
   return (
     <form className={css.formInput} onSubmit={sendUser}>
