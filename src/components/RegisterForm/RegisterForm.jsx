@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 import css from './RegisterForm.module.css';
 import { register } from 'redux/operationsAuth';
+import { selectIsLoggedIn } from 'redux/selectors';
 
 export function RegisterForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const dispatch = useDispatch();
 
@@ -40,6 +43,10 @@ export function RegisterForm() {
     setEmail('');
     setPassword('');
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/addcontact" replace />;
+  }
 
   return (
     <form className={css.formInput} onSubmit={sendUser}>

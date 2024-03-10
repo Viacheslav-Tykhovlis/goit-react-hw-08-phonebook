@@ -5,6 +5,7 @@ import Register from 'pages/Register/Register';
 import Login from 'pages/Login/Login';
 import AddContact from 'pages/AddContact/AddContact';
 import Contacts from 'pages/Contacts/Contacts';
+import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 
 export function App() {
   return (
@@ -13,20 +14,19 @@ export function App() {
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/addcontact" element={<AddContact />} />
-        <Route path="/contacts" element={<Contacts />} />
+        <Route
+          path="/addcontact"
+          element={
+            <PrivateRoute redirectTo="/login" component={<AddContact />} />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<Contacts />} />
+          }
+        />
       </Routes>
-      {/* <h2>Phonebook</h2> */}
-
-      {/* <h2>Contacts</h2> */}
-
-      {/* <Filter onChange={changeFilter} value={filter} /> */}
-
-      {/* <ContactList>
-        {isLoading && <p>Loading contacts...</p>}
-        {error && <p>{error}</p>}
-        <Contact contactList={filtredContacts()} onDeleteContact={delContact} />
-      </ContactList> */}
     </div>
   );
 }
