@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import css from './LoginForm.module.css';
 import { logIn } from 'redux/operationsAuth';
 
@@ -6,6 +7,7 @@ export function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
   const getEmail = evt => {
     setEmail(evt.target.value);
   };
@@ -16,10 +18,12 @@ export function LoginForm() {
 
   const sendUser = evt => {
     evt.preventDefault();
-    logIn({
-      email,
-      password,
-    });
+    dispatch(
+      logIn({
+        email,
+        password,
+      })
+    );
     reset();
   };
 

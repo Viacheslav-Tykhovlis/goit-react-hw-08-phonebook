@@ -6,7 +6,7 @@ export const Contact = ({ contactList, onDeleteContact }) => {
     return (
       <li key={contact.id} className={css.contactItem}>
         <p className={css.name}>{contact.name}</p>
-        <span className={css.number}>{contact.phone}</span>
+        <span className={css.number}>{contact.number}</span>
         <button
           className={css.btnDelete}
           type="button"

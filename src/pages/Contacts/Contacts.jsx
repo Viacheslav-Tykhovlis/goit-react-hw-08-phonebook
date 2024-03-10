@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  getContacts,
-  getFilter,
-  getIsLoading,
-  getError,
+  selectContacts,
+  selectFilter,
+  selectIsLoading,
+  selectError,
 } from 'redux/selectors';
 import { fetchContacts, deleteContact } from 'redux/operations';
 import { chngFilter } from 'redux/filterSlice';
@@ -14,10 +14,10 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 
 const Contacts = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   const dispatch = useDispatch();
 

@@ -2,23 +2,23 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './ContactForm.module.css';
 import { addContact } from 'redux/operations';
-import { getContacts } from '../../redux/selectors';
+import { selectContacts } from '../../redux/selectors';
 
 export function ContactForm() {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const contacts = useSelector(getContacts);
+  const [number, setNumber] = useState('');
+  const contacts = useSelector(selectContacts);
 
   const dispatch = useDispatch();
 
   const onSubmit = evt => {
     evt.preventDefault();
     const name = evt.target.name.value;
-    const phone = evt.target.phone.value;
+    const number = evt.target.number.value;
     if (isSaved(name)) {
       return alert(`${name} is already is contacts `);
     }
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number }));
     reset();
   };
 
@@ -34,12 +34,12 @@ export function ContactForm() {
   };
 
   const getNumber = evt => {
-    setPhone(evt.target.value);
+    setNumber(evt.target.value);
   };
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -63,9 +63,9 @@ export function ContactForm() {
         <br />
         <input
           className={css.inputName}
-          value={phone}
+          value={number}
           type="tel"
-          name="phone"
+          name="number"
           placeholder="Input phone your contact"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required

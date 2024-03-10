@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import css from './RegisterForm.module.css';
 import { register } from 'redux/operationsAuth';
 
@@ -6,6 +8,8 @@ export function RegisterForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   const getEmail = evt => {
     setEmail(evt.target.value);
@@ -21,11 +25,13 @@ export function RegisterForm() {
 
   const sendUser = evt => {
     evt.preventDefault();
-    register({
-      name,
-      email,
-      password,
-    });
+    dispatch(
+      register({
+        name,
+        email,
+        password,
+      })
+    );
     reset();
   };
 
