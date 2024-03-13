@@ -1,20 +1,38 @@
 .formInput {
   display: flex;
   flex-direction: column;
+  position: relative;
 
   padding: 10px;
   width: 350px;
   border: 2px solid grey;
   border-radius: 10px;
+  box-shadow: 0 0 5px #d9d8d8;
 }
 
 .labelEmail {
   margin-bottom: 20px;
 }
 
+.inputBox {
+  border: 0.1rem solid #000;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  padding: 0rem 1rem;
+  border-radius: 0.8rem;
+}
+
 .inputEmail {
-  width: 250px;
-  height: 20px;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 0.5rem;
+}
+
+.eyeIcon {
+  width: 1.8rem;
+  cursor: pointer;
 }
 
 .btnUser {
